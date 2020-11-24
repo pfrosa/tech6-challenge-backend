@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +29,9 @@ namespace tech6_challenge_backend
         {
             services.AddControllers();
             services.AddScoped<ITodoRepo,TodoRepo>();
+            services
+                .AddEntityFrameworkNpgsql()
+                .AddDbContext<TodoContext>(options => options.UseNpgsql(Configuration.GetConnectionString("localhostConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
