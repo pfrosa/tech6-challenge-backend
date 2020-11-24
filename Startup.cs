@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using tech6_challenge_backend.Data;
 
 namespace tech6_challenge_backend
 {
@@ -26,6 +27,7 @@ namespace tech6_challenge_backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ITodoRepo,TodoRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

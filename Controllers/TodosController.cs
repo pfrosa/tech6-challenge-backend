@@ -9,18 +9,23 @@ namespace tech6_challenge_backend.Controllers
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private readonly TodoRepo repo = new TodoRepo();
+        private readonly ITodoRepo _repo;
+
+        public TodosController(ITodoRepo repo)
+        {
+            _repo = repo;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<Todo>> GetAllTodos()
         {
-            return Ok(repo.GetAllTodos());
+            return Ok(_repo.GetAllTodos());
         }
 
         [HttpGet("{id}")]
         public ActionResult<Todo> GetTodoById(int id)
         {
-            return Ok(repo.GetTodoById(id));
+            return Ok(_repo.GetTodoById(id));
         }
     }
 }
