@@ -41,6 +41,12 @@ namespace tech6_challenge_backend
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseCors(builder => 
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                );
 
             app.UseHttpsRedirection();
 
